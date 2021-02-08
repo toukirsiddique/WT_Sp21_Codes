@@ -4,11 +4,8 @@
 <body>
 A quick brown
 <?php
-    echo"<b>fox</b>"
+    echo"A quick brwon <b>fox</b> jumps over the lazy <b>dog</b>"
 ?>
-jumps over the lazy
-<?php
-    echo "<b>dog</b>"
-?>
+
 </body>
 </html>
