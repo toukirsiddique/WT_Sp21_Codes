@@ -1,7 +1,14 @@
 <html>
+<head>
+</head>
+<body>
+A quick brown
 <?php
-
-    echo"A quick brown <b>fox</b> jumps over the lazy <b>dog</b>"
-
+    echo"<b>fox</b>"
 ?>
+jumps over the lazy
+<?php
+    echo "<b>dog</b>"
+?>
+</body>
 </html>
