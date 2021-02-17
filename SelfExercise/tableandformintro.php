@@ -86,7 +86,7 @@
 <html>
     <head></head>
     <body>
-        <form action="WT_Sp21_Html/submitdemo.php" method="post">
+        <form action="WT_Sp21_Html/SelfExercise/submitdemo.php" method="post">
             <span>Username:</span><input type="text" name="uname"><br>
             <span>Password:</span><input type="password" name="pass"><br>
             <span>Gender:</span>
