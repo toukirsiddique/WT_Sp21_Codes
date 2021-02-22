@@ -10,10 +10,11 @@
     $err_cpass="";
     $email="";
     $err_email="";
+    $phone="";
+    $err_phone="";
     $code="";
-    $err_code="";
     $number="";
-    $err_number="";
+    $err_code="";
     $address="";
     $err_address="";
     $gender="";
@@ -45,64 +46,127 @@
                 $uname = htmlspecialchars($_POST["uname"]);
             }
 
-            if(empty($_POST["pass"])){
-                $err_pass = "Please enter your password";
+          
+
+            $up=$_POST["pass"];
+            for($i=0;$i<strlen($up);$i++){
+                if(ctype_lower($up[$i])){
+                    $upt=true;
+                    break;
+                }
+                else{
+                    $upt=false;
+                }
             }
-            elseif(strlen($_POST["pass"]) < 6){
-                $err_pass = "Password should be minimum 6 characters long";
+            $low=$_POST["pass"];
+            for($i=0;$i<strlen($up);$i++){
+                if(ctype_lower($up[$i])){
+                    $lowt=true;
+                    break;
+                }
+                else{
+                    $lowt=false;
+                }
             }
-            elseif(strpos($_POST["pass"]," ")){
-                $err_pass = "Whitespace is not accepted";
+            $low=$_POST["pass"];
+            for($i=0;$i<strlen($up);$i++){
+                if(is_numeric($up[$i])){
+                    $numt=true;
+                    break;
+                }
+                else{
+                    $numt=false;
+                }
             }
-            elseif(strpos($_POST["pass"],"#")){
-                $err_pass = "Must contain # or ?";
-            }
-            elseif(strpos($_POST["pass"],"?")){
-                $err_pass = "Must contain # or ?";
-            }
-            elseif(!ctype_upper($_POST["pass"])){
-                $err_pass="Password should contain uppercase letters";
-            }
-            elseif(!ctype_lower($_POST["pass"])){
-                $err_pass="Password should contain lower letters";
+        
+            if(strpos($_POST["pass"],"?")||strpos($_POST["pass"],"#")){
+                    $sp=true;
             }
             else{
-                $pass = htmlspecialchars($_POST["pass"]);
+                $sp=false;
             }
+
 
             if(empty($_POST["pass"])){
-                $err_cpass="Enter pass again";
+                $err_pass="Enter pass";
+                
             }
-            elseif($_POST["cpass"]!=$pass){
-                $err_cpass="Password does not match";
+            else if(strlen($_POST["pass"])<8){
+                $err_pass="Password must be more than 6 characters long";
+            }
+            else if(strpos($_POST["pass"]," ")){
+                $err_pass="Password should not contain whitespace";
+            }
+            
+            else if($upt==false){
+                $err_upass="Must contain Uppercase letter";
+            }
+            else if($lowt==false){
+                $err_lpass="Must contain Lowerrcase letter";
+            }
+            else if($numt==false){
+                $err_npass="Must contain Number";
+            }
+            else if($sp==false){
+                $err_spass="Must contain special character # or ?";
             }
 
-            if(empty($_POST["email"])){
-                $err_email="E-mail is required here";
+            else{   
+                $pass=htmlspecialchars($_POST["pass"]);
+
             }
-            elseif(!strpos($_POST["email"],"@")){
-                $err_email="This field should contain @ sign";
-            }
+               
+
+                if(empty($_POST["pass"])){
+                    $err_cpass="Please check pass again";
+                }
+                elseif($_POST["cpass"]!=$pass){
+                    $err_cpass="Password does not match";
+                }
+
+                if(empty($_POST["email"])){
+                    $err_email="E-mail is required here";
+                }
+                else{
+                        if(!strpos($_POST["email"],"@") || !strpos($_POST["email"],".")){
+                            $err_email="Email field should contain both @ and .(dot)sign";
+                }
             else{
                 $email=htmlspecialchars($_POST["email"]);
             }
+            }
 
-            if(!is_numeric($_POST["code"])||!is_numeric($_POST["phone"])){
-                $err_phone="Phone number should contain only numeric values";
+            if(empty($_POST["code"]) && empty($_POST["number"])){
+                $err_phone= "Please enter your code number";
+            }
+            else{
+                    if(!is_numeric($_POST["code"]) || !is_numeric($_POST["number"])){
+                        $err_phone="Phone number should contain only numeric values";
+                    }
+                else{
+                    $phone= $_POST["code"].$_POST["number"];
+            }
+            }
+
+            if(empty($_POST["staddress"]) || empty($_POST["city"]) || empty($_POST["state"]) || empty($_POST["zip"])){
+                $err_address="Please type your address";
+            }
+            else{
+                $address=htmlspecialchars($_POST["staddress"].$_POST["city"].$_POST["state"].$_POST["zip"]);
             }
 
             if(!isset($_POST["gender"])){
-                $err_gender="gedner must be selected";
+                $err_gender="gender must be selected";
             }
             else{
                 $gender=$_POST["gender"];
             }
 
             if(!isset($_POST["cb[]"])){
-                $err_hobbies= "Please select your hobby";
+                $err_cb= "Please answer this question";
             }
             else{
-                $hobbies=$_POST["cb[]"];
+                $cb=$_POST["cb[]"];
             }
 
            
@@ -118,47 +182,49 @@
 <head></head>
 <body>
     <fieldset>
-        <legend><h1>User Registration</h1></legend>
+        <legend><h1>Club Member Registration</h1></legend>
         <form action="" method="post">
             <table>
                 <tr>
                     <td><span>Name:</span></td>
-                    <td><input type="text" name="name" value="<?php echo $name; ?>" placeholder="Name">
+                    <td><input type="text" name="name" value="<?php echo $name; ?>">
                         <span><?php echo $err_name; ?></span></td>
                 </tr>
                 <tr>
                     <td><span>Username:</span></td>
-                    <td><input type="text" name="uname" value="<?php echo $uname; ?>" placeholder="Username">
+                    <td><input type="text" name="uname" value="<?php echo $uname; ?>">
                         <span><?php echo $err_uname; ?></span></td>
                 </tr>
 
                 <tr>
                     <td><span>Password:</span></td>
-                    <td><input type="password" name="pass" value="<?php echo $pass; ?>" placeholder="Password">
+                    <td><input type="password" name="pass" value="<?php echo $pass; ?>">
                         <span><?php echo $err_pass; ?></span></td>
                 </tr>
 
                 <tr>
                     <td><span>Confirm Password:</span></td>
-                    <td><input type="password" name="cpass" value="<?php echo $cpass; ?>" placeholder="Confirm Password">
+                    <td><input type="password" name="cpass" value="<?php echo $cpass; ?>">
                         <span><?php echo $err_cpass; ?></span></td>
                 </tr>
 
                 <tr>
                     <td><span>Email:</span></td>
-                    <td><input type="text" name="email" placeholder="E-mail">
+                    <td><input type="text" name="email" value="<?php echo $email; ?>" placeholder="E-mail">
                         <span><?php echo $err_email; ?></span></td>
                 </tr>
 
                 <tr>
                     <td><span>Phone:</span></td>
-                    <td><input type="text" size="3" name="code" placeholder="code"> - <input type="text" size="11" name="number" placeholder="number">
-                    <td><?php echo $err_phone; ?></span></td>
+                    <td><input type="text" size="3" name="code" value="<?php echo $code; ?>" placeholder="code"> - <input type="text" size="10" name="number" value ="<?php echo $number; ?>" placeholder="Number">
+                        <span><?php echo $err_phone; ?></span></td>
+                    
                 </tr>
 
                 <tr>
                     <td><span>Address:</span></td>
-                    <td><input type="text" name="city" placeholder="City"> - <input type="text" name="state" placeholder="State"></br>
+                    <td><input type="text" name="staddress" placeholder="Street Address"></br>
+                        <input type="text" name="city" placeholder="City"> - <input type="text" name="state" placeholder="State"></br>
                         <input type="text" name="zip" placeholder="Postal/Zip code"> 
                         <span><?php echo $err_address; ?></span></td>
                 </tr>
@@ -170,11 +236,13 @@
                             <?php for($i=1; $i<=31; $i++){
                                 echo "<option>$i</option>";
                             } ?></br>
+
                     <td><select name="month">
                         <option disabled selected>Month</option>
                             <?php for($i=1; $i<=12; $i++){
                                 echo "<option>$i</option>";
                             } ?>
+                            
                     <td><select name="year">
                         <option disabled selected>Year</option>
                             <?php for($i=1985; $i<=2000; $i++){
@@ -187,8 +255,8 @@
 
                 <tr>
                     <td><span>Gender:</span></td>
-                    <td><input type="radio" name="gender" value="Male"><span>Male</span>
-                        <input type="radio" name="gender" value="Female">Female<br>
+                    <td><input type="radio" name="gender" value="male"><span>Male</span>
+                        <input type="radio" name="gender" value="female">Female<br>
                         <span><?php echo $err_gender; ?></span></td>
                 </tr>
 
