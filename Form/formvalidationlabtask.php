@@ -162,7 +162,7 @@
                 $gender=$_POST["gender"];
             }
 
-            if(!isset($_POST["cb[]"])){
+            if(isset($_POST["cb[]"])){
                 $err_cb= "Please answer this question";
             }
             else{
@@ -235,13 +235,13 @@
                         <option disabled selected>Day</option>
                             <?php for($i=1; $i<=31; $i++){
                                 echo "<option>$i</option>";
-                            } ?></br>
+                            } ?>
 
                     <td><select name="month">
                         <option disabled selected>Month</option>
                             <?php for($i=1; $i<=12; $i++){
                                 echo "<option>$i</option>";
-                            } ?>
+                            } ?></br>
                             
                     <td><select name="year">
                         <option disabled selected>Year</option>
