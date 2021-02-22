@@ -71,7 +71,7 @@
         echo "Password: ". $_POST["pass"]."<br>";
         echo "Gender: ". $_POST["gender"]."<br>";
         echo "Profession: ". $_POST["profession"]."<br>";
-        echo "Submit: ".$_POST["submit"]."<br>"; 
+        //echo "Submit: ".$_POST["submit"]."<br>"; 
         echo "Bio: ".$_POST["bio"]."<br>";
         $var = $_POST["hobbies"];
         for($i=0;$i<count($var);$i++){

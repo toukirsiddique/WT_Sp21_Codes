@@ -162,11 +162,11 @@
                 $gender=$_POST["gender"];
             }
 
-            if(isset($_POST["cb[]"])){
+            if(!isset($_POST["cb"])){
                 $err_cb= "Please answer this question";
             }
             else{
-                $cb=$_POST["cb[]"];
+                $cb=$_POST["cb"];
             }
 
            
@@ -271,12 +271,11 @@
 
                 <tr>
                     <td><span>Bio:</span></td>
-                    <td><textarea name="bio"><?php echo $bio; ?></textarea>
-                    <span><?php echo $err_bio;?></span></td>
-                </tr>
+                    <td><textarea name="bio"><?php echo $bio; ?></textarea></br>
+                    
+                    <input type="submit" name="submit" value="Register" >
 
-                <tr>
-                    <td><input type="submit" name="submit" value="Register"></td>
+                    <span><?php echo $err_bio; ?></span></td>
                 </tr>
             </table>
         </form>
