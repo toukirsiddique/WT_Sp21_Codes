@@ -48,11 +48,11 @@
                 $gender=$_POST["gender"];
             }
 
-            if(!isset($_POST["hobbies[]"])){
+            if(!isset($_POST["hobbies"])){
                 $err_hobbies= "Please select your hobby";
             }
             else{
-                $hobbies=$_POST["hobbies[]"];
+                $hobbies=$_POST["hobbies"];
             }
 
             if(!isset($_POST["profession"])){

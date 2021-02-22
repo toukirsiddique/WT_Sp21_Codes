@@ -231,23 +231,23 @@
 
                 <tr>
                     <td><span>Birth Date:</span></td>
-                    <td><select name="day">
-                        <option disabled selected>Day</option>
-                            <?php for($i=1; $i<=31; $i++){
-                                echo "<option>$i</option>";
-                            } ?>
+                        <td><select name="day">
+                            <option disabled selected>Day</option>
+                                <?php for($i=1; $i<=31; $i++){
+                                 echo "<option>$i</option>";
+                            } ?></select>
 
-                    <td><select name="month">
-                        <option disabled selected>Month</option>
-                            <?php for($i=1; $i<=12; $i++){
-                                echo "<option>$i</option>";
-                            } ?></br>
+                        <select name="month">
+                            <option disabled selected>Month</option>
+                                <?php for($i=1; $i<=12; $i++){
+                                    echo "<option>$i</option>";
+                            } ?></select>
                             
-                    <td><select name="year">
-                        <option disabled selected>Year</option>
-                            <?php for($i=1985; $i<=2000; $i++){
-                                echo "<option>$i</option>";
-                            } ?>
+                        <select name="year">
+                            <option disabled selected>Year</option>
+                                <?php for($i=1985; $i<=2000; $i++){
+                                    echo "<option>$i</option>";
+                            } ?> </select></td>
 
                         
 
