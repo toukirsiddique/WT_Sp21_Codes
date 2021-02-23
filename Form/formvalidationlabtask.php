@@ -50,7 +50,7 @@
 
             $up=$_POST["pass"];
             for($i=0;$i<strlen($up);$i++){
-                if(ctype_lower($up[$i])){
+                if(ctype_upper($up[$i])){
                     $upt=true;
                     break;
                 }

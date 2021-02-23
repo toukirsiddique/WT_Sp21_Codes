@@ -14,7 +14,7 @@
     $err_bio="";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        //if(isset($_POST["submit"])){
+        if(isset($_POST["submit"])){
             if(empty($_POST["uname"])){
                 $err_uname = "Please enter your name";
             }
