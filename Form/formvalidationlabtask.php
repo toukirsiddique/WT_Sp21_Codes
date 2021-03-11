@@ -261,7 +261,7 @@
                 </tr>
 
                 <tr>
-                    <td><span>Where did you head about us?:</span></td>
+                    <td><span>Where did you hear about us?:</span></td>
                     <td><input type="checkbox" name="cb[]" value="A Friend or Collegue">A Friend or Collegue</br>
                         <input type="checkbox" name="cb[]" value="Google">Google</br>
                         <input type="checkbox" name="cb[]" value="Blog Post">Blog Post</br>
