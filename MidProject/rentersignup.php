@@ -90,6 +90,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $city=$_POST["city"];
     $state=$_POST["state"];
     $postal=$_POST["postal"];
+    $acode=$_POST["acode"];
+    $cont=$_POST["cont"];
+    
     
     
     if(empty($unamef)){
@@ -205,7 +208,7 @@ if(empty($_POST["cont"])){
         }
 
 if(!isset($_POST["day"]) || !isset($_POST["month"]) || !isset($_POST["year"])){
-    $err_dob="Date Required";
+    $err_dob="Date Of Birth Required";
 }
 else{
     $dob=$_POST["day"]."-".$_POST["month"]."-".$_POST["year"];  
@@ -219,63 +222,105 @@ else{
 
 
 <html>
-    <head></head>
+    <head>
+        <style>
+            body{
+                background-color:rgb(240,240,240);
+            }
+            .signup-div{
+                border:1px solid rgb(245,245,245);
+                margin:auto;
+                width:30%;
+                margin-top:5%;
+                background-color:rgb(255,255,255);
+                padding:20px 0px 20px 0px;
+
+            }
+            .my-font{
+                font-size:20px;
+                font-family:consolas;
+            }
+            .btn-sup{
+                background-color:rgb(112,191,65);
+                border:none;
+                color:white;
+                width:100%;
+                border-radius:3px;
+                padding:5px;
+            }
+            .btn-sup:hover{
+                background-color:rgb(100,170,40);
+            }
+            .btn-sup:active{
+                background-color:green;
+            }
+            .err-msg{
+                color:red;
+                font-size:20px;
+                font-family:consolas;
+
+            }
+        </style>
+    </head>
     <body>
-        <div>
+        <div class="signup-div">
+            <h1 align="center" style="font-family:cambria">Renter Signup</h1>
+            <h4 align="center" style="font-family:cambria">Where Searching House Becomes Easier</h4>
+            
             <form action="" method="post">
-                <table>
+                <table align="center">
                     <tr>
-                        <td><span>Full Name</span></td>
+                        <td><span class="my-font">Full Name</span></td>
                     </tr>
                     <tr>
                         
                         <td><input type="text" name="unamef" value="<?php echo $unamef; ?>" placeholder="First Name">
-                            <span style="color:red;"><?php echo $err_unamef; ?></span></br>
+                            <span class="err-msg"><?php echo $err_unamef; ?></span></br>
                             
                             <input type="text" name="unamel" value="<?php echo $unamel; ?>" placeholder="Last Name">
-                            <span style="color:red;"><?php echo $err_unamel; ?></span>
+                            <span class="err-msg"><?php echo $err_unamel; ?></span>
                             
                         </td>
                             
                     </tr>
                     <tr>
-                        <td><span>Password</span></td>
+                        <td><span class="my-font">Password</span></td>
                     </tr>
                     <tr>
                         <td><input type="password" name="pass" value="<?php echo $pass; ?>" placeholder="Password">
-                        <span style="color:red;"><?php echo $err_pass; ?></span></td>
+                        <span class="err-msg"><?php echo $err_pass; ?></span></td>
                     </tr>
                     <tr>
-                        <td><span>Confirm Password</span></td>
+                        <td><span class="my-font">Confirm Password</span></td>
                     </tr>
                     <tr>
                         <td><input type="password" name="cpass">
-                            <span style="color:red;"><?php echo $err_cpass; ?></span></td>
+                            <span class="err-msg"><?php echo $err_cpass; ?></span></td>
                     </tr>
                     <tr>
-                        <td><span>Gender<span></td>
+                        <td><span class="my-font">Gender<span></td>
                     </tr>
                     <tr>
                         <td><input type="radio" name="gender" value="male">Male
                         <td><input type="radio" name="gender" value="female">Female
-                            <span style="color:red;"><?php echo $err_gender; ?></span></td>
+                            <span class="err-msg"><?php echo $err_gender; ?></span></td>
                     </tr>
                     <tr>
-                        <td><span>Address</span></td>
+                        <td><span class="my-font">Address</span></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="saddress" value="<?php echo $saddress; ?>" placeholder="Street Address">
-                            <span><?php echo $err_saddress;?></span></br>
+                            <span class="err-msg"><?php echo $err_saddress;?></span></br>
 
                             <input type="text" name="city" value="<?php echo $city; ?>" placeholder="City">
-                            <span><?php echo $err_city?></span>
+                            <span class="err-msg"><?php echo $err_city?></span>
                             
                             <input type="text" name="state" value="<?php echo $state; ?>" placeholder="State / Provience">
-                            <span><?php echo $err_state;?></span></br>
+                            <span class="err-msg"><?php echo $err_state;?></span></br>
 
-                            <input type="text" name="postal" value="<?php echo $postal; ?>" placeholder="Postal / Zip Code">
-                            <span><?php echo $err_postal;?></span>
-                            <span><?php echo $err_postaln;?></span>
+                            <input type="text" size="4" name="postal" value="<?php echo $postal; ?>" placeholder="Zip">
+                            <span class="err-msg"><?php echo $err_postal;?></span>
+                            <span class="err-msg"><?php echo $err_postaln;?></span>
 
                             <select name="country">
                                 <option disabled selected>Choose one</option>
@@ -283,33 +328,33 @@ else{
                                 <option>Bangladesh</option> <option>Belgium</option> <option>Brazil</option> <option>France</option>
                                 <option>Canada</option>USA</option>
                             </select>
-                            <span><?php echo $err_country; ?></span>
+                            <span class="err-msg"><?php echo $err_country; ?></span>
                         </td>
                     </tr>
                     <tr>
-                        <td><span>E-mail</span></td>
+                        <td><span class="my-font">E-mail</span></td>
                     </tr>
                     <tr>
                         <td><input type="text" name="email" value="<?php echo $email;?>">
-                        <span><?php echo $err_email;?></span>
+                        <span class="err-msg"><?php echo $err_email;?></span>
                         </td>
                     </tr>
                     <tr>
-                        <td><span>Contact Number</span></td>
+                        <td><span class="my-font">Contact Number</span></td>
                     </tr>
                     <tr>
-                        <td><input tpye="text" name="acode" value="<?php echo $acode;?>" placeholder="Area Code">
-                            <span><?php echo $err_acode;?></span>
-                            <span><?php echo $err_acoden;?></span>
+                        <td><input tpye="text" size="3" name="acode" value="<?php echo $acode;?>" placeholder="Code">
+                            <span class="err-msg"><?php echo $err_acode;?></span>
+                            <span class="err-msg"><?php echo $err_acoden;?></span>
                                                         
 
                             <input type="text" name="cont" value="<?php echo $cont;?>" placeholder="Phone / Mobile">
-                            <span><?php echo $err_cont;?></span>
-                            <span><?php echo $err_contn;?></span>
+                            <span class="err-msg"><?php echo $err_cont;?></span>
+                            <span class="err-msg"><?php echo $err_contn;?></span>
                         </td>  
                     </tr>
                     <tr>
-                        <td><span>Date Of Birth</span></td>
+                        <td><span class="my-font">Date Of Birth</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -345,7 +390,7 @@ else{
 
 
                     <tr>
-                        <td><input type="submit" name="submit" value="Signup"></td>
+                        <td colspan="2"><input type="submit" class="my-font btn-sup" name="submit" value="Create My Account"></td>
                     </tr>
                 </table>
             </form>
