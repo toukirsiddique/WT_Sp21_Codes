@@ -88,8 +88,9 @@
         <table>
             <tr>
                 <td><span>Username:</span></td>
-                <td><input type="text" name="uname" value="<?php echo $uname; ?>" placeholder="Username">
-                    <span><?php echo $err_uname; ?></span></td>
+                <td><input type="text" name="uname" value="<?php echo $uname; ?>" placeholder="Username"></br>
+                    <span><?php echo $err_uname; ?></span>
+                </td>
             </tr>
 
             <tr>
